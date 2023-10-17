@@ -1,39 +1,88 @@
-
+//How can we gain access to the partials we created in this file?
+@import "btnConfig";
+@import "config";
+@import "utilities";
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-
 body {
   background-color: $light-color;
   font-family: $font-stack;
   line-height: 1;
 }
-
 img {
   border-radius: 50%;
 }
-
 a {
   text-decoration: none;
 }
-
 .hero {
   // This is where the bulk of the SCSS styling needs to be done
-
   // Take a look at the other files we've built already. How can they be useful here?
-
   // Also, take time to review the features of SCSS we've already covered:
   // 1. $variables
   // 2. nesting (dont forget about the ampersand (&) parent selector!)
   // 3. At-Rules
-}
+  @include set-bg($primary-color);
+  color: $font-color;
+  height: 775px;
 
+  //The nav needs some styling.
+  nav {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .banner {
+      font-size: 26px;
+
+    }
+
+    ul {
+      display: flex;
+      list-style: none;
+    }
+
+    li {
+      padding: .5rem;
+      font-size: 17px;
+    }
+
+    a {
+      color: $font-color;
+    }
+    a:hover {
+      color: $secondary-color;
+    }
+  }   
+  
+  //hero-content Hint: this content can be accessed as a nested property via the (&) ampersand selector within the .hero class.
+  &-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: left;
+    // padding: 0 20%;
+    margin-top: 45px;
+  h1 {
+    font-size: 3rem;
+  }
+
+  p {
+    font-size: 17px;
+  }
+    img {
+      width: 60%;
+    }
+  }
+}
 // This code is related to some of the aspects of SCSS we have yet to cover.
 // While you don't have to mess with it, it would be advisable to attempt to understand its functionality.
 $spaceamounts: (1,2,3,4,5);
-
 @each $space in $spaceamounts {
   .m-#{$space} {
     margin: #{$space}rem;
@@ -41,7 +90,6 @@ $spaceamounts: (1,2,3,4,5);
   .my-#{$space} {
     margin: #{$space}rem 0;
   }
-
   .p-#{$space} {
     padding: #{$space}rem;
   }
